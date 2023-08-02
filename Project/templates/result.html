@@ -1,0 +1,55 @@
+{% extends "start.html" %}
+{% block head %}
+  <style>
+    body{
+        background-image: url('/static/result.jpg');
+        text-align: center;
+    }
+    h1{
+        color: purple;
+    }
+    b{
+        font-size: large;
+    }
+    /* .main{
+        margin: 30px;
+        padding:30px;
+    } */
+  </style>
+{% endblock head %}
+{% block body %}
+<body>
+    <div class="main">
+    <h3>Left eye result is:-</h1>
+    <br>
+    <b>
+    {{ans1}}
+    </b>
+    <br>
+    <br>
+    <h3>Right eye result is:-</h1>
+    <br>
+    <b>
+    {{ans2}}
+    </b>    
+</div>  
+<br>
+<br>
+<br>
+<b>
+<p>name: {{name}}</p>
+<p>email: {{email}}</p>
+<p>phone number:{{phone}}</p>
+<p>address:{{desc}}</p>
+<h2>left image</h2>
+<img src="{{img1}}" alt="">
+
+<br>
+<h2>right image</h2>
+<img src="{{img2}}" alt="">
+<p></p>
+</b>
+<p>*This result is based on the prediction of a trained deep learning model.</p>
+</body>
+
+{% endblock body %}
