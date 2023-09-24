@@ -1,64 +1,87 @@
 {% extends 'start.html' %}
 {% block head %}
   <style>
-    body{
-        background-image:  linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.0)),url('static/eyehd.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: wheat;
+    body {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.0)), url('static/eyehd.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: wheat;
+      font-family: sans-serif;
     }
-    .contact{
-        margin:10vw;
-        padding: 10vh;
-        background-color: rgb(0,0,0,0.5);
-        border-radius: 17px;
-        
+
+    .contact {
+      margin: 10vw;
+      padding: 10vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 17px;
     }
-    label{
-        color: white;
+
+    label {
+      color: white;
     }
-    
+
+    h2 {
+      color: rgb(19, 239, 255);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn-success {
+      background-color: rgb(19, 239, 255);
+      color: white;
+      border: 1px solid rgb(19, 239, 255);
+      border-radius: 5px;
+    }
   </style>
 {% endblock head %}
 {% block body %}
 
-    <form class="contact" method="post"  action="/contact" enctype="multipart/form-data">
-        {% csrf_token %}
-        <center>
-            <p><h2 style="color: rgb(19, 239, 255);">Test your eyes</h2></p>
-        </center>
-        <!-- <img src="" alt="sd"> -->
-        <div class="form-group">
-            <label for="name">Enter you name</label>
-            <br>
-            <input type="text" name="name" id="name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="name">Phone number</label>
-            <br>
-            <input type="text" name="phone" id="phone">
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Address</label>
-          <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-        </div>
-      
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Upload left retina image</label>
-            <input type="file" class="form-control-file" id="left" name="left">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Upload right retina image</label>
-            <input type="file" class="form-control-file" id="right" name="right">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-success">Get results</button>
-    </form>
-    
+  <form class="contact" method="post" action="/contact" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center>
+      <p><h2>Test your eyes</h2></p>
+    </center>
+
+    <div class="form-group">
+      <label for="name">Enter your name</label>
+      <input type="text" name="name" id="name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Phone number</label>
+      <input type="text" name="phone" id="phone" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Address</label>
+      <textarea name="desc" id="desc" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Upload left retina image</label>
+      <input type="file" name="left" id="left" class="form-control-file">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Upload right retina image</label>
+      <input type="file" name="right" id="right" class="form-control-file">
+    </div>
+
+    <button type="submit" class="btn btn-success">Get results</button>
+  </form>
+
 {% endblock body %}

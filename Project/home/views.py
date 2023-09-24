@@ -26,6 +26,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -77,9 +78,9 @@ def contact(request):
         d={'name':name,'email':email,'phone':phone,'desc':desc,'img1':f1,'img2':f2,'res1':res1,'res2':res2,'date':datetime.today(),'ans1':res1,'ans2':res2}
         return render(request,'result.html',d)
     return render(request,'contact.html')
+
+
 def display(request):
-    
-    # return redirect('signin')
     
     if request.user.is_authenticated:
         d=Contact.objects.all()
@@ -89,6 +90,15 @@ def display(request):
         return render(request,"display.html",context)
     else:
         return redirect('signin')
+
+# @login_required
+    # def display(request):
+    #     d = Contact.objects.all()
+    #     context = {
+    #         "obj": d
+    #     }
+    #     return render(request, "display.html", context)
+
 def start(request):
     return render(request,'start.html') 
 def land(request):
@@ -98,19 +108,18 @@ def doctors(request):
 
 
 
-# def update(request,id):
-#     if(request.method=='POST'):
+def update(request,id):
+    if(request.method=='POST'):
         
-#         name=request.POST.get('name')
-#         email=request.POST.get('email')
-#         phone=request.POST.get('phone')
-#         desc=request.POST.get('desc')
-#         date=datetime.now() 
-#         cr=Contact(id=id,name=name,email=email,phone=phone,desc=desc,date=date)
-#         cr.save()
-#         std=Contact.objects.all()   
-#         return  redirect('index')
-
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        desc=request.POST.get('desc')
+        date=datetime.now() 
+        cr=Contact(id=id,name=name,email=email,phone=phone,desc=desc,date=date)
+        cr.save()
+        std=Contact.objects.all()   
+        return  redirect('index')
 def delete(request,id):
     std=Contact.objects.filter(id=id).delete()
     context={
@@ -144,21 +153,25 @@ def signup(request):
         messages.success(request,"hey your account has been created successfully")
         return redirect('signin')
     return render(request,'signup.html')
+
+
 def signin(request):
-    # print(user.is_authenticated)
     if request.method == 'POST':
         name = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request,username=name,password=password)
+        user = authenticate(request, username=name, password=password)
         if user is not None:
-            auth_login(request,user)
-            # print(request.user.isAuthenticated)
+            auth_login(request, user)
+            # User is authenticated, redirect to the desired page.
             return redirect('display')
-
         else:
-            messages.error(request,'Bad Crendentials')
+            messages.error(request, 'Bad Credentials')
             return redirect('signin')
-    return render(request,'signin.html')
+    return render(request, 'signin.html')
+
+
 def signout(request):
+    print('hello')
     logout(request)
+    print(request.user.is_authenticated)
     return redirect('home')
