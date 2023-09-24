@@ -98,18 +98,19 @@ def doctors(request):
 
 
 
-def update(request,id):
-    if(request.method=='POST'):
+# def update(request,id):
+#     if(request.method=='POST'):
         
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        phone=request.POST.get('phone')
-        desc=request.POST.get('desc')
-        date=datetime.now() 
-        cr=Contact(id=id,name=name,email=email,phone=phone,desc=desc,date=date)
-        cr.save()
-        std=Contact.objects.all()   
-        return  redirect('index')
+#         name=request.POST.get('name')
+#         email=request.POST.get('email')
+#         phone=request.POST.get('phone')
+#         desc=request.POST.get('desc')
+#         date=datetime.now() 
+#         cr=Contact(id=id,name=name,email=email,phone=phone,desc=desc,date=date)
+#         cr.save()
+#         std=Contact.objects.all()   
+#         return  redirect('index')
+
 def delete(request,id):
     std=Contact.objects.filter(id=id).delete()
     context={
