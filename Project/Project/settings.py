@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'django.contrib.admin',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +56,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'Project.urls'
+
 
 TEMPLATES = [
     {
@@ -71,6 +75,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'Project.wsgi.application'
 
@@ -139,3 +144,5 @@ MEDIA_URL='/media/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR,'static'),
 )
+
+
